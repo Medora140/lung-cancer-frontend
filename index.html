@@ -1,0 +1,142 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Pulmo-X | AI Lung Cancer Detection</title>
+    <link rel="stylesheet" href="style.css">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css" referrerpolicy="no-referrer" />
+</head>
+<body>
+    <!-- Navigation -->
+    <nav>
+        <div class="container nav-container">
+            <div class="logo">
+                <i class="fas fa-lungs"></i>
+                <span>Pulmo-X</span>
+            </div>
+            <div class="nav-links">
+                <a href="#" onclick="showSection('landing')">Home</a>
+                <a href="#" onclick="showSection('upload-section')">Diagnosis</a>
+                <button id="theme-toggle" class="icon-btn"><i class="fas fa-moon"></i></button>
+            </div>
+        </div>
+    </nav>
+
+    <main class="container">
+        <!-- 1. Landing Page -->
+        <section id="landing" class="active">
+            <div class="hero">
+                <div class="hero-content">
+                    <h1>AI-Powered Lung Cancer Detection</h1>
+                    <p>Leveraging state-of-the-art EfficientNet architecture to assist radiologists in identifying lung cancer types from CT scans with high precision and explainability.</p>
+                    <div class="hero-btns">
+                        <button class="btn btn-primary" onclick="showSection('upload-section')">Start Diagnosis <i class="fas fa-arrow-right"></i></button>
+                    </div>
+                </div>
+                <div class="hero-image">
+                    <img src="images/hero-lung.jpg" alt="Medical Illustration">
+                </div>
+            </div>
+
+            <div class="features">
+                <div class="feature-card">
+                    <i class="fas fa-microscope"></i>
+                    <h3>Deep Learning</h3>
+                    <p>Trained on thousands of CT scans for robust classification.</p>
+                </div>
+                <div class="feature-card">
+                    <i class="fas fa-eye"></i>
+                    <h3>Explainability</h3>
+                    <p>Grad-CAM heatmaps show exactly where the AI is looking.</p>
+                </div>
+                <div class="feature-card">
+                    <i class="fas fa-bolt"></i>
+                    <h3>Real-time</h3>
+                    <p>Get results and detailed reports in seconds.</p>
+                </div>
+            </div>
+        </section>
+
+        <!-- 2. Upload Page -->
+        <section id="upload-section">
+            <div class="section-header">
+                <h2>Analyze CT Scan</h2>
+                <p>Upload a clear CT scan image (JPG/PNG) for automated analysis.</p>
+            </div>
+
+            <div class="upload-container">
+                <div id="drop-zone" class="drop-zone">
+                    <i class="fas fa-cloud-upload-alt"></i>
+                    <p>Drag & drop image here or <span>browse</span></p>
+                    <input type="file" id="fileInput" hidden accept="image/*">
+                </div>
+                
+                <div id="preview-container" class="hidden">
+                    <h3>Scan Preview</h3>
+                    <img id="image-preview" src="" alt="Preview">
+                    <button id="analyzeBtn" class="btn btn-primary">Analyze <i class="fas fa-search"></i></button>
+                    <button id="reset-btn" class="btn btn-outline">Change Image</button>
+                </div>
+            </div>
+
+            <!-- Loading Spinner -->
+            <div id="loader" class="hidden">
+                <div class="spinner"></div>
+                <p>AI is processing scan...</p>
+            </div>
+        </section>
+
+        <!-- 3. Result Page -->
+        <section id="result-section" class="hidden">
+            <div class="result-grid">
+                <div class="result-card main-result">
+                    <h2>Analysis Result</h2>
+                    <div class="prediction-box">
+                        <span id="res-class" class="label">Result</span>
+                        <div class="confidence-wrapper">
+                            <span>Confidence: <strong id="res-confidence">0%</strong></span>
+                            <div class="progress-bar">
+                                <div id="res-progress" style="width: 0%"></div>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <div class="explanation">
+                        <h4><i class="fas fa-info-circle"></i> AI Interpretation</h4>
+                        <p>The model has identified patterns consistent with <strong id="res-class-text">...</strong>. Please consult with a medical professional for a final diagnosis.</p>
+                    </div>
+
+                    <div class="action-btns">
+                        <button class="btn btn-outline" onclick="showSection('upload-section')">New Analysis</button>
+                        <button class="btn btn-primary" onclick="window.print()"><i class="fas fa-download"></i> Download Report</button>
+                    </div>
+                </div>
+
+                <div class="result-card visualization">
+                    <h3>AI Attention (Grad-CAM)</h3>
+                    <div class="image-comparison">
+                        <div class="img-box">
+                            <img id="res-heat" src="" alt="Grad-CAM Heatmap">
+                            <span>Heatmap Overlay</span>
+                        </div>
+                    </div>
+                    <div class="legend">
+                        <span>Low Attention</span>
+                        <div class="gradient-bar"></div>
+                        <span>High Attention</span>
+                    </div>
+                    <p class="small-text">The highlighted region shows where the AI model focused its diagnostic attention.</p>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <footer>
+        <p>&copy; 2024 Pulmo-X AI Diagnostic System. For educational use only.</p>
+    </footer>
+
+    <script src="script.js"></script>
+</body>
+</html>
