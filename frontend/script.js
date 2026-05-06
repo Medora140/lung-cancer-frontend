@@ -113,7 +113,7 @@ if (analyzeBtn) {
             
         } catch (error) {
             console.error('Error:', error);
-            alert("Server error or backend asleep (Render cold start). Please try again in a few seconds.");
+            alert("Server error or backend asleep (Render cold start)");
         } finally {
             analyzeBtn.disabled = false;
             loader.classList.add('hidden');
